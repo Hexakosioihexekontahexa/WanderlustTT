@@ -1,3 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using WanderlustTabletop.AppData.Menus;
 
-Console.WriteLine("Hello, World!");
+namespace WanderlustTabletop;
+
+public abstract class Program
+{
+    public static void Main(string[] args)
+    {
+        PlayerQtyMenu.DisplayPlayerQtyStartMenu();
+    }    
+}
