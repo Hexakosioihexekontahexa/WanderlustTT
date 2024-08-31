@@ -2,7 +2,7 @@
 
 public class TerrinothWorld : World
 {
-    public TerrinothWorld(int count, string worldName, Questpack questpack) : base(count, worldName, questpack)
+    public TerrinothWorld(int count, string worldName) : base(count, worldName)
     {
         
     }

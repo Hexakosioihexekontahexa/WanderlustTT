@@ -18,10 +18,9 @@ public abstract class World
 
     //public Questpack questpack; 
     
-    public World(int count, string worldName, Questpack questpack)
+    public World(int count, string worldName)
     {
         this.count = count;
         this.worldName = worldName;
-        this.questpack = questpack;
     }
 }
