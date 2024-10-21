@@ -8,7 +8,8 @@ public abstract class Program
     public static void Main(string[] args)
     {
         //var test = new ForestContainer();
-        ForestContainer.InitializeForests();
+        ForestData.InitializeForests();
         //PlayerQtyMenu.DisplayPlayerQtyStartMenu();
+        ForestData.GetForestByName("Древо горя");
     }    
 }
