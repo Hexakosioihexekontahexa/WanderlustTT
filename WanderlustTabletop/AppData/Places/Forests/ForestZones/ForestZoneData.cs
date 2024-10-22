@@ -2,30 +2,38 @@
 
 namespace WanderlustTabletop.AppData.Places.Forests.ForestZones;
 
-public class ForestZoneData
+public static class ForestZoneData
 {
+    public static List<ForestZone> ForestZoneList = new();
+    
     public static void InitializeForestZones()
     {
-        const string forestJsonPath = "AppData/Places/Forests/Forests.json";
-        var json = File.ReadAllText(forestJsonPath);
-        var forestZoneDataJson = JsonConvert.DeserializeObject<ForestZoneList>(json);
-        ForestZoneList = forestZoneDataJson.ForestZones;
-    }
-	
-    public static void InitializeForests(string filePath)
-    {
-        var json = File.ReadAllText(filePath);
-        var forestDataJson = JsonConvert.DeserializeObject<ForestList>(json);
-        ForestList = forestDataJson.Forests;
-    }
-    
-    public static Forest GetForestByName(string forestName)
-    {
-        foreach (var forest in ForestList.Where(forest => forestName == forest.Name))
+        foreach (var forest in ForestData.ForestList)
         {
-            return forest;
+            if (forest.Zones != null)
+            {
+                foreach (var forestZone in forest.Zones)
+                {
+                    forestZone.ForestName = forest.Name;
+                    ForestZoneList.Add(forestZone);
+                }
+            }
         }
+    }
 
-        throw new Exception("Cannot find forest named: " + forestName);
+    public static ForestZone GetForestZoneByName(string forestZoneName)
+    {
+        return ForestZoneList.Where(zone => forestZoneName == zone.Name).FirstOrDefault();
+    }
+
+    public static List<ForestZone> GetForestZoneList(Forest forest)
+    {
+        return forest.Zones.Where(zone => zone != null).ToList();
+    }
+
+    public static ForestZone GetForestZoneByNameFromForest(string forestZoneName, string forestName)
+    {
+        return ForestData.GetForestByName(forestName).Zones.
+            Where(forestZone => forestZone.Name == forestZoneName).FirstOrDefault();
     }
 }

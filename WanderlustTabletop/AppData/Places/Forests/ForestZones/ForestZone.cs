@@ -2,12 +2,8 @@
 
 public class ForestZone : Location
 {
+    public string ForestName { get; set; }
     public string Name { get; set; }
-    public int Id;
-    public int Weight;
-}
-
-public class ForestZoneList
-{
-    public List<ForestZone> ForestZones { get; set; }
+    public int Id { get; set; }
+    public int Weight { get; set; }
 }

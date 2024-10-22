@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using WanderlustTabletop.AppData.Places.Forests.ForestZones;
 
 namespace WanderlustTabletop.AppData.Places.Forests;
 
@@ -6,19 +7,20 @@ public static class ForestData
 {
     public static List<Forest> ForestList { get; private set; }
 
-    public static void InitializeForests()
+    public static void InitializeForestLocations()
     {
-        const string forestJsonPath = "AppData/Places/Forests/Forests.json";
-        var json = File.ReadAllText(forestJsonPath);
+        var json = File.ReadAllText(JsonData.TerrinothForestJsonPath);
         var forestDataJson = JsonConvert.DeserializeObject<ForestList>(json);
         ForestList = forestDataJson.Forests;
+        ForestZoneData.InitializeForestZones();
     }
 	
-    public static void InitializeForests(string filePath)
+    public static void InitializeForestLocations(string filePath)
     {
         var json = File.ReadAllText(filePath);
         var forestDataJson = JsonConvert.DeserializeObject<ForestList>(json);
         ForestList = forestDataJson.Forests;
+        ForestZoneData.InitializeForestZones();
     }
     
     public static Forest GetForestByName(string forestName)
@@ -31,7 +33,7 @@ public static class ForestData
         throw new Exception("Cannot find forest named: " + forestName);
     }
 
-    public static Location GetRandomForestByWeight()
+    public static Location GetRandomForestLocationByWeight()
     {
         var forestName = new List<string>();
         var forestWeight = new List<int>();
@@ -44,7 +46,7 @@ public static class ForestData
         
         var random = new Random();
         var randomForestNumber = random.Next(1, forestWeight.Sum() + 1);
-
+        
         // Определение выпавшего объекта
         var cumulativeChance = 0;
         string selectedForestName = null;
@@ -60,43 +62,38 @@ public static class ForestData
         }
 
         var targetForest = GetForestByName(selectedForestName);
-        var forestZone = new List<string>();
-        var forestZoneWeight = new List<int>();
         
         if (targetForest.Zones != null)
         {
-            foreach (var zone in targetForest.Zones)
-            {
-                forestZone.Add(zone.Name);
-                forestZoneWeight.Add(zone.Weight);
-            }
+            var totalForestZoneWeight = targetForest.Zones.Sum(zone => zone.Weight);
 
-            if (random.Next(1, 11) == 10)
+            if (random.Next(1, 11) >= 8) //30% success rate
             {
-                var randomZoneNumber = random.Next(1, forestZoneWeight.Sum() + 1);
+                var randomZoneNumber = random.Next(1, totalForestZoneWeight + 1);
                 
                 cumulativeChance = 0;
                 string selectedForestZoneName = null;
                 
-                for (var i = 0; i < forestZoneWeight.Count; i++)
+                foreach (var forestZone in targetForest.Zones)
                 {
-                    cumulativeChance += forestZoneWeight[i];
+                    cumulativeChance += forestZone.Weight;
                     if (randomZoneNumber <= cumulativeChance)
                     {
-                        return 
-                        //selectedForestZoneName = forestZone[i];
-                        break;
+#if DEBUG
+                        Console.WriteLine(forestZone.Name);
+#endif
+                        return ForestZoneData.GetForestZoneByName(forestZone.Name);
                     }
                 }
             }
-            
-            
         }
-
+#if DEBUG
+        Console.WriteLine(targetForest.Name);
+#endif
         return targetForest;
-        throw new Exception("Forest randomization failed" + forestName);
-        //return ForestList[0];
     }
+    
+    
 }
 
  
