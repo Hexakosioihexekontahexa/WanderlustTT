@@ -1,6 +1,6 @@
 ﻿using WanderlustTabletop.AppData;
+using WanderlustTabletop.AppData.Locations.Forests;
 using WanderlustTabletop.AppData.Menus;
-using WanderlustTabletop.AppData.Places.Forests;
 
 namespace WanderlustTabletop;
 

@@ -1,4 +1,4 @@
-﻿using WanderlustTabletop.AppData.Places.Forests;
+﻿using WanderlustTabletop.AppData.Locations.Forests;
 
 namespace WanderlustTabletop.AppData;
 
