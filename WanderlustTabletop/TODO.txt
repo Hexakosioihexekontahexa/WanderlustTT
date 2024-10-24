@@ -1,0 +1,3 @@
+﻿TODO 1. Add initializers to every location
+TODO 2. Finish Worlds class
+TODO 3. Work on quests?

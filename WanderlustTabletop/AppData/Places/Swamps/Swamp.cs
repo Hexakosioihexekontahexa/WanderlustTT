@@ -1,6 +1,12 @@
 ﻿namespace WanderlustTabletop.AppData.Places.Swamps;
 
-public class Swamp
+public class Swamp : Location
 {
-    
+    public new string Name { get; set; }
+    public new int Id { get; set; }
+    public new int Weight { get; set; }
+}
+public class SwampList
+{
+    public List<Swamp> Swamps { get; set; }
 }
