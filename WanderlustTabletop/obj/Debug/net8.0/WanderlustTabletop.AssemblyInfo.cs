@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WanderlustTabletop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9be847e87d1858f9b58a15040a48896379b6aa1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5342a2e3e0f343fd01e921c245c7720854b81927")]
 [assembly: System.Reflection.AssemblyProductAttribute("WanderlustTabletop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WanderlustTabletop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

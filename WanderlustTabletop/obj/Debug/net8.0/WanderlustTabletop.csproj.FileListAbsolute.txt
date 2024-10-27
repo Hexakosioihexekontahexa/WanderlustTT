@@ -16,4 +16,8 @@ C:\Users\criti\RiderProjects\WanderlustTT\WanderlustTabletop\obj\Debug\net8.0\re
 C:\Users\criti\RiderProjects\WanderlustTT\WanderlustTabletop\obj\Debug\net8.0\WanderlustTabletop.pdb
 C:\Users\criti\RiderProjects\WanderlustTT\WanderlustTabletop\obj\Debug\net8.0\WanderlustTabletop.genruntimeconfig.cache
 C:\Users\criti\RiderProjects\WanderlustTT\WanderlustTabletop\obj\Debug\net8.0\ref\WanderlustTabletop.dll
-C:\Users\criti\RiderProjects\WanderlustTT\WanderlustTabletop\bin\Debug\net8.0\AppData\Places\Forests\Forests.json
+C:\Users\criti\RiderProjects\WanderlustTT\release\Wanderlust\net8.0\WanderlustTabletop.exe
+C:\Users\criti\RiderProjects\WanderlustTT\release\Wanderlust\net8.0\WanderlustTabletop.deps.json
+C:\Users\criti\RiderProjects\WanderlustTT\release\Wanderlust\net8.0\WanderlustTabletop.runtimeconfig.json
+C:\Users\criti\RiderProjects\WanderlustTT\release\Wanderlust\net8.0\WanderlustTabletop.dll
+C:\Users\criti\RiderProjects\WanderlustTT\release\Wanderlust\net8.0\WanderlustTabletop.pdb

@@ -5,7 +5,7 @@ namespace WanderlustTabletop.AppData.Locations.Hills;
 
 public class HillData
 {
-    public static List<Hill> HillList { get; private set; }
+    public static List<Hill>? HillList { get; private set; }
 
     public static void InitializeHillLocations()
     {
@@ -65,27 +65,9 @@ public class HillData
         
         if (targetHill.Zones != null)
         {
-            var totalHillZoneWeight = targetHill.Zones.Sum(zone => zone.Weight);
-
-            if (random.Next(1, 11) >= 8) //30% success rate
-            {
-                var randomZoneNumber = random.Next(1, totalHillZoneWeight + 1);
-                
-                cumulativeChance = 0;
-                string selectedHillZoneName = null;
-                
-                foreach (var hillZone in targetHill.Zones)
-                {
-                    cumulativeChance += hillZone.Weight;
-                    if (randomZoneNumber <= cumulativeChance)
-                    {
-#if DEBUG
-                        Console.WriteLine(hillZone.Name);
-#endif
-                        return HillZoneData.GetHillZoneByName(hillZone.Name);
-                    }
-                }
-            }
+            return targetHill.Name is "Uncategorized" ? 
+                HillZoneData.GetHillZoneByWeightAndTargetHill(targetHill) : 
+                HillZoneData.GetHillZoneChanceByWeightAndTargetHill(targetHill);
         }
 #if DEBUG
         Console.WriteLine(targetHill.Name);

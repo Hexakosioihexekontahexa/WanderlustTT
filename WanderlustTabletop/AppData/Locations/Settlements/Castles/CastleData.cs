@@ -4,7 +4,7 @@ namespace WanderlustTabletop.AppData.Locations.Settlements.Castles;
 
 public class CastleData
 {
-    public static List<Castle> CastleList { get; private set; }
+    public static List<Castle>? CastleList { get; private set; }
 
     public static void InitializeCastleLocations()
     {

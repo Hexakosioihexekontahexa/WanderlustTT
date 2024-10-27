@@ -24,6 +24,68 @@ public class HillZoneData
         return HillZoneList.Where(zone => hillZoneName == zone.Name).FirstOrDefault();
     }
 
+    
+    
+    public static Location GetHillZoneChanceByWeightAndTargetHill(Hill targetHill)
+    {
+        if (targetHill.Name == "Uncategorized")
+        {
+            var debug = 1;
+        }
+        var random = new Random();
+        var totalHillZoneWeight = targetHill.Zones.Sum(zone => zone.Weight);
+
+        if (random.Next(1, 11) >= 8) //30% success rate
+        {
+            var randomZoneNumber = random.Next(1, totalHillZoneWeight + 1);
+                
+            var cumulativeChance = 0;
+            string selectedHillZoneName = null;
+                
+            foreach (var hillZone in targetHill.Zones)
+            {
+                cumulativeChance += hillZone.Weight;
+                if (randomZoneNumber <= cumulativeChance)
+                {
+#if DEBUG
+                        Console.WriteLine(hillZone.Name);
+#endif
+                    return GetHillZoneByName(hillZone.Name);
+                }
+            }
+        }
+
+        return targetHill;
+    }
+    
+    public static HillZone GetHillZoneByWeightAndTargetHill(Hill targetHill)
+    {
+        var totalHillZoneWeight = targetHill.Zones.Sum(zone => zone.Weight);
+        var random = new Random();
+        var randomZoneNumber = random.Next(1, totalHillZoneWeight + 1);
+            
+        var cumulativeChance = 0;
+        string selectedHillZoneName = null;
+            
+        foreach (var hillZone in targetHill.Zones)
+        {
+            cumulativeChance += hillZone.Weight;
+            if (randomZoneNumber <= cumulativeChance)
+            {
+#if DEBUG
+                    Console.WriteLine(hillZone.Name);
+#endif
+                selectedHillZoneName = hillZone.Name;
+                break;
+            }
+        }
+        
+
+        return GetHillZoneByName(selectedHillZoneName);
+    }
+    
+    
+    
     public static List<HillZone> GetHillZoneList(Hill hill)
     {
         return hill.Zones.Where(zone => zone != null).ToList();

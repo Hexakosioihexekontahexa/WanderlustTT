@@ -1,16 +1,67 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <OutputPath>$(SolutionDir)release/Wanderlust2/</OutputPath>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <Target Name="CreateOutputDirectory" BeforeTargets="BeforeBuild">
+        <MakeDir Directories="$(OutputPath)" />
+    </Target>
+
     <ItemGroup>
-      <None Update="AppData\Places\Forests\Forests.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData/Locations/Forests/Forests.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Hills\Hills.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Lakes\Lakes.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Mountains\Mountains.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Plains\Plains.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Swamps\Swamps.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Settlements\Castles\Castles.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Settlements\Sanctuaries\Sanctuaries.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Settlements\Towns\Towns.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
+        
+        <None Update="$(SolutionDir)WanderlustTabletop/AppData\Locations\Settlements\Villages\Villages.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <TargetPath>bin/WorldData/Terrinoth/%(Filename)%(Extension)</TargetPath>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

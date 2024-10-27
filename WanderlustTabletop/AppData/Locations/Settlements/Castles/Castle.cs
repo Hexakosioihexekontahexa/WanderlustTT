@@ -2,11 +2,12 @@
 
 public class Castle : Location
 {
-    public new string Name { get; set; }
+    public override string Name { get; set; }
     public new int Id { get; set; }
     public new int Weight { get; set; }
+    public new static int CategoryWeight = 10;
 }
 public class CastleList
 {
-    public List<Castle> Castles { get; set; }
+    public List<Castle>? Castles { get; set; }
 }

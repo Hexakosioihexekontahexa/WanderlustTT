@@ -4,7 +4,7 @@ namespace WanderlustTabletop.AppData.Locations.Lakes;
 
 public class LakeData
 {
-    public static List<Lake> LakeList { get; private set; }
+    public static List<Lake>? LakeList { get; private set; }
 
     public static void InitializeLakeLocations()
     {

@@ -5,7 +5,7 @@ namespace WanderlustTabletop.AppData.Locations.Forests;
 
 public static class ForestData
 {
-    public static List<Forest> ForestList { get; private set; }
+    public static List<Forest>? ForestList { get; private set; }
 
     public static void InitializeForestLocations()
     {

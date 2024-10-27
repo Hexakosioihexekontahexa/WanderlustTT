@@ -14,7 +14,7 @@ public class PlainData
         PlainList = plainDataJson.Plains;
         PlainZoneData.InitializePlainZones();
     }
-	
+
     public static void InitializePlainLocations(string filePath)
     {
         var json = File.ReadAllText(filePath);
@@ -22,7 +22,7 @@ public class PlainData
         PlainList = plainDataJson.Plains;
         PlainZoneData.InitializePlainZones();
     }
-    
+
     public static Plain GetPlainByName(string plainName)
     {
         foreach (var plain in PlainList.Where(plain => plainName == plain.Name))
@@ -43,10 +43,10 @@ public class PlainData
             plainName.Add(plain.Name);
             plainWeight.Add(plain.Weight);
         }
-        
+
         var random = new Random();
         var randomPlainNumber = random.Next(1, plainWeight.Sum() + 1);
-        
+
         // Определение выпавшего объекта
         var cumulativeChance = 0;
         string selectedPlainName = null;
@@ -62,30 +62,12 @@ public class PlainData
         }
 
         var targetPlain = GetPlainByName(selectedPlainName);
-        
+
         if (targetPlain.Zones != null)
         {
-            var totalPlainZoneWeight = targetPlain.Zones.Sum(zone => zone.Weight);
-
-            if (random.Next(1, 11) >= 8) //30% success rate
-            {
-                var randomZoneNumber = random.Next(1, totalPlainZoneWeight + 1);
-                
-                cumulativeChance = 0;
-                string selectedPlainZoneName = null;
-                
-                foreach (var plainZone in targetPlain.Zones)
-                {
-                    cumulativeChance += plainZone.Weight;
-                    if (randomZoneNumber <= cumulativeChance)
-                    {
-#if DEBUG
-                        Console.WriteLine(plainZone.Name);
-#endif
-                        return PlainZoneData.GetPlainZoneByName(plainZone.Name);
-                    }
-                }
-            }
+            return targetPlain.Name is "Uncategorized" or "Столицы" ? 
+                PlainZoneData.GetPlainZoneByWeightAndTargetPlain(targetPlain) : 
+                PlainZoneData.GetPlainZoneChanceByWeightAndTargetPlain(targetPlain);
         }
 #if DEBUG
         Console.WriteLine(targetPlain.Name);

@@ -4,12 +4,13 @@ namespace WanderlustTabletop.AppData.Locations.Forests;
 
 public class Forest : Location
 {
-    public new string Name { get; set; }
-    public new List<ForestZone> Zones { get; set; }
+    public override string Name { get; set; }
+    public new List<ForestZone>? Zones { get; set; }
     public new int Id { get; set; }
     public new int Weight { get; set; }
+    public new static int CategoryWeight = 10;
 }
 public class ForestList
 {
-    public List<Forest> Forests { get; set; }
+    public List<Forest>? Forests { get; set; }
 }
