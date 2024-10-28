@@ -42,7 +42,7 @@ public class VillageData
         }
         
         var random = new Random();
-        var randomVillageNumber = random.Next(1, villageWeight.Sum() + 1);
+        var randomVillageNumber = random.Next(0, villageWeight.Sum() + 1);
         
         // Определение выпавшего объекта
         var cumulativeChance = 0;

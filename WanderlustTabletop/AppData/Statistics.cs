@@ -48,9 +48,13 @@ public static class Statistics
 
         Console.WriteLine("---------------");
 // Получаем словарь с уникальными значениями и количеством их вхождений
+        // var frequencyDictionary = dataList
+        //     .GroupBy(item => item.ToLower())
+        //     .OrderByDescending(group => group.Count()) // Сортируем по количеству вхождений
+        //     .ToDictionary(group => group.Key, group => group.Count());
         var frequencyDictionary = dataList
             .GroupBy(item => item)
-            .OrderByDescending(group => group.Count()) // Сортируем по количеству вхождений
+            .OrderBy(group => group.Key) // Сортируем по ключу (алфавитный порядок)
             .ToDictionary(group => group.Key, group => group.Count());
 
 // Выводим результаты
